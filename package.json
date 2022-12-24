@@ -1,0 +1,18 @@
+{
+  "name": "haruko",
+  "version": "0.0.1",
+  "description": "MFH's official server management bot.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "author": "Lunari8546",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
+  }
+}
