@@ -40,13 +40,11 @@ async function initialize() {
   const commands = [];
 
   for (const commandFile of commandFiles) {
-    await import(`${commandsDir}${commandFile}`).then(
-      (command) => {
-        client.commands.set(command.default.info["name"], command.default);
+    await import(`${commandsDir}${commandFile}`).then((command) => {
+      client.commands.set(command.default.info["name"], command.default);
 
-        commands.push(command.default.info.toJSON());
-      }
-    );
+      commands.push(command.default.info.toJSON());
+    });
   }
 
   try {
@@ -74,6 +72,8 @@ client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
   const command = interaction.client.commands.get(interaction.commandName);
+
+  if (!command) return;
 
   await command.execute(client, interaction);
 });

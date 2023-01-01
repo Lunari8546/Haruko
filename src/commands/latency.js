@@ -1,9 +1,9 @@
-import { SlashCommandBuilder } from "discord.js";
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 
 export default {
   info: new SlashCommandBuilder()
     .setName("latency")
-    .setDescription("Checks the latency.")
+    .setDescription("Show the latency of API or Bot.")
     .addStringOption((option) =>
       option
         .setName("type")
@@ -15,13 +15,21 @@ export default {
         )
     ),
   async execute(client, interaction) {
+    const type = interaction.options.getString("type");
+
     const value =
-      interaction.options.getString("type") == "API"
+      type == "API"
         ? Math.round(client.ws.ping)
         : Math.abs(Date.now() - interaction.createdTimestamp);
 
     await interaction.reply({
-      content: `${interaction.options.getString("type")} latency: ${value}ms`,
+      embeds: [
+        new EmbedBuilder()
+          .setColor("Purple")
+          .setTitle(`${type} latency:`)
+          .setDescription(`${value}ms`)
+          .setTimestamp(),
+      ],
       ephemeral: true,
     });
   },
