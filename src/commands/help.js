@@ -3,7 +3,7 @@ import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 export default {
   info: new SlashCommandBuilder()
     .setName("help")
-    .setDescription("Show all available commands."),
+    .setDescription("Show all commands available."),
   async execute(client, interaction) {
     const fields = [];
 
@@ -19,7 +19,7 @@ export default {
       embeds: [
         new EmbedBuilder()
           .setColor("Purple")
-          .setTitle(`All available commands:`)
+          .setTitle(`Commands:`)
           .setFields(fields)
           .setTimestamp(),
       ],

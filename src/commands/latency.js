@@ -9,7 +9,7 @@ export default {
         .setName("type")
         .setDescription("Type of latency.")
         .setRequired(true)
-        .addChoices(
+        .setChoices(
           { name: "API", value: "API" },
           { name: "Bot", value: "Bot" }
         )
